@@ -38,10 +38,65 @@ To perform a study on Socket Programming
 •	Once a connection is establi
 •	shed, servers can send and receive data using send() and recv().
 
+````
+import socket
+
+# Create a socket object
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Get local machine name and bind to port
+host = 'localhost'
+port = 12345
+server_socket.bind((host, port))
+
+# Queue up to 5 requests
+server_socket.listen(5)
+print("Server is listening...")
+
+# Establish a connection
+client_socket, addr = server_socket.accept()
+print(f"Connected to {addr}")
+
+# Receive data from the client
+data = client_socket.recv(1024).decode()
+print(f"Received from client: {data}")
+
+# Send a response to the client
+response = "Hello from server!"
+client_socket.send(response.encode())
+
+# Close the connection
+client_socket.close()
+server_socket.close()
+````
+
 ## Client –Server Operations
 
 Clients create a socket using socket() and connect to a server using connect().
 After establishing a connection, clients can send and receive data using send() and recv().
+
+````
+import socket
+
+# Create a socket object
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Connect to the server
+host = 'localhost'
+port = 12345
+client_socket.connect((host, port))
+
+# Send data to the server
+message = "Hello from client!"
+client_socket.send(message.encode())
+
+# Receive response from the server
+data = client_socket.recv(1024).decode()
+print(f"Received from server: {data}")
+
+# Close the connection
+client_socket.close()
+````
 
 ## Use Cases of Socket Programming:
 Socket programming finds applications in various domains, including web development, file transfer protocols, online gaming, and real-time communication. It is the foundation for protocols like HTTP, FTP, and SMTP, which power the internet. Socket programming enables the development of both server and client applications, facilitating the exchange of information between devices in a networked environment.
@@ -56,3 +111,6 @@ Socket programming finds applications in various domains, including web developm
 
 ## Result:
 Thus the study of Socket Programming Completed Successfully
+![image](https://github.com/user-attachments/assets/6ec79163-eae4-4cab-94ce-31e24784b52c)
+![image](https://github.com/user-attachments/assets/33bebefd-f432-4aa0-be4f-d8115abed67a)
+
